@@ -15,6 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
   <style>
+    /* ── RESET ─────────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -25,8 +26,14 @@
       --papel:   #F2F0EA;
       --blanco:  #FFFFFF;
       --platino: #D6D7DD;
+
       --cromo: linear-gradient(180deg,
-        #ffffff 0%, #d2d5db 38%, #7d8189 52%, #eef0f3 70%, #9aa0a8 100%);
+        #ffffff 0%,
+        #d2d5db 38%,
+        #7d8189 52%,
+        #eef0f3 70%,
+        #9aa0a8 100%
+      );
     }
 
     html { scroll-behavior: auto; }
@@ -40,7 +47,7 @@
 
     body.is-loading { overflow: hidden; }
 
-    /* ── SCANLINES ──────────────────────────────────── */
+    /* ── SCANLINES ─────────────────────────────────── */
     body::before {
       content: '';
       position: fixed;
@@ -138,7 +145,6 @@
       display: block;
     }
 
-    /* Overlay que cubre el último frame del vídeo */
     #loader-overlay {
       position: absolute;
       inset: 0;
@@ -232,7 +238,6 @@
       overflow: hidden;
     }
 
-    /* Grid perspectiva */
     .hero-grid {
       position: absolute;
       inset: 0;
@@ -245,7 +250,6 @@
       pointer-events: none;
     }
 
-    /* Canvas partículas */
     #hero-canvas {
       position: absolute;
       inset: 0;
@@ -253,7 +257,6 @@
       opacity: 0.55;
     }
 
-    /* Glow ambiental */
     .hero-ambient {
       position: absolute;
       inset: 0;
@@ -292,7 +295,6 @@
       z-index: 2;
     }
 
-    /* Cursor parpadeante tras la label */
     .hero-label::after {
       content: '_';
       color: var(--acero);
@@ -383,7 +385,6 @@
       99%       { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
     }
 
-    /* Indicadores tech laterales (hero) */
     .hero-tech-panel {
       position: absolute;
       top: 50%;
@@ -455,7 +456,7 @@
 
     .eyebrow-num {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       letter-spacing: 0.2em;
       color: var(--acero);
     }
@@ -464,7 +465,7 @@
 
     .eyebrow-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
+      font-size: 0.8rem;
       letter-spacing: 0.28em;
     }
 
@@ -472,20 +473,6 @@
     #nosotros {
       background: var(--papel);
       padding: 10rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* Dot-grid sutil */
-    #nosotros::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, rgba(58,58,64,0.12) 1px, transparent 1px);
-      background-size: 28px 28px;
-      -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 35%, transparent 100%);
-      mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 35%, transparent 100%);
     }
 
     #nosotros .eyebrow-tag { color: var(--grafito); }
@@ -498,7 +485,6 @@
       line-height: 1.18;
       max-width: 22ch;
       margin-bottom: 4rem;
-      position: relative;
     }
 
     .about-cols {
@@ -506,7 +492,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       max-width: 860px;
-      position: relative;
     }
 
     .about-cols p {
@@ -522,7 +507,6 @@
       margin-top: 6rem;
       padding-top: 3.5rem;
       border-top: 1px solid var(--niebla);
-      position: relative;
     }
 
     .stat { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -548,164 +532,111 @@
       line-height: 1.5;
     }
 
-    /* ── SERVICES — FLOATING CARDS ──────────────────── */
+    /* ── SERVICES ───────────────────────────────────── */
     #servicios {
-      background: var(--tinta);
+      background: linear-gradient(135deg, #101014, #43434E);
       padding: 10rem 4rem;
       position: relative;
-    }
-
-    /* Grid sutil de fondo */
-    #servicios::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(214,215,221,0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(214,215,221,0.018) 1px, transparent 1px);
-      background-size: 88px 88px;
+      overflow: hidden;
     }
 
     #servicios .eyebrow-tag { color: var(--acero); }
 
+    .services-intro {
+      font-weight: 300;
+      font-size: clamp(1rem, 1.4vw, 1.15rem);
+      color: var(--acero);
+      margin-bottom: 2.5rem;
+      margin-top: -1.5rem;
+    }
+
     .services-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      perspective: 1600px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.9rem;
     }
 
     .svc {
-      padding: 3.5rem;
-      border: 1px solid rgba(214,215,221,0.1);
-      background: rgba(255,255,255,0.02);
+      padding: 2.5rem;
+      background: var(--papel);
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
+      gap: 1.2rem;
       position: relative;
       overflow: hidden;
-      transform-style: preserve-3d;
-      will-change: transform;
-      cursor: default;
-      box-shadow:
-        0 8px 40px rgba(0,0,0,0.55),
-        inset 0 1px 0 rgba(255,255,255,0.03);
-      transition: box-shadow 0.45s ease, background 0.45s ease;
+      transition: background 0.35s, box-shadow 0.35s;
+      min-height: 160px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.18);
     }
 
-    /* Barra cromada superior */
     .svc::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
-      height: 1px;
+      height: 2px;
       background: var(--cromo);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.55s ease;
-    }
-
-    /* Glow en esquina superior derecha */
-    .svc::after {
-      content: '';
-      position: absolute;
-      top: -80px; right: -80px;
-      width: 200px; height: 200px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(214,215,221,0.07) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.5s ease;
-      pointer-events: none;
+      transition: transform 0.45s ease;
     }
 
     .svc:hover::before { transform: scaleX(1); }
-    .svc:hover::after  { opacity: 1; }
-
     .svc:hover {
-      background: rgba(214,215,221,0.04);
-      box-shadow:
-        0 28px 70px rgba(0,0,0,0.7),
-        0 0 0 1px rgba(214,215,221,0.13),
-        inset 0 1px 0 rgba(255,255,255,0.07);
+      background: #e5e3dc;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.28);
     }
 
-    /* Shimmer sweep al hacer hover */
-    .svc-shimmer {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        108deg,
-        transparent 38%, rgba(255,255,255,0.04) 50%, transparent 62%
-      );
-      transform: translateX(-110%);
-      pointer-events: none;
+    .svc.svc--more {
+      background: var(--tinta);
+      border: 1px solid rgba(214,215,221,0.12);
+      justify-content: flex-end;
+      box-shadow: none;
     }
 
-    .svc:hover .svc-shimmer {
-      animation: shimmerSweep 0.65s ease forwards;
-    }
-
-    @keyframes shimmerSweep {
-      to { transform: translateX(110%); }
+    .svc.svc--more:hover {
+      background: rgba(214,215,221,0.06);
+      box-shadow: none;
     }
 
     .svc-num {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.58rem;
       letter-spacing: 0.28em;
-      color: var(--grafito);
+      color: var(--acero);
     }
 
     .svc-title {
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: clamp(1.3rem, 2vw, 1.85rem);
-      color: var(--blanco);
-      line-height: 1.2;
+      font-size: clamp(1rem, 1.4vw, 1.35rem);
+      color: var(--tinta);
+      line-height: 1.25;
     }
 
-    .svc-body {
-      font-weight: 300;
-      font-size: 0.93rem;
-      line-height: 1.75;
-      color: var(--acero);
-      flex: 1;
-    }
-
-    .svc-cta {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+    .svc--more .svc-title {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.22em;
-      color: var(--grafito);
-      transition: color 0.3s, gap 0.3s;
+      font-weight: 400;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      color: var(--acero);
+      text-transform: uppercase;
     }
 
-    .svc-cta::after { content: '→'; font-size: 0.85rem; transition: transform 0.3s; }
-
-    .svc:hover .svc-cta { color: var(--platino); gap: 1.2rem; }
-    .svc:hover .svc-cta::after { transform: translateX(4px); }
+    /* ── CONSTELLATION ─────────────────────────────── */
+    .constellation-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 340px;
+      height: 340px;
+      pointer-events: none;
+      opacity: 0.7;
+    }
 
     /* ── PROCESS ────────────────────────────────────── */
     #proceso {
       background: var(--papel);
       padding: 10rem 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    #proceso::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background-image: radial-gradient(circle, rgba(58,58,64,0.12) 1px, transparent 1px);
-      background-size: 28px 28px;
-      -webkit-mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 35%, transparent 100%);
-      mask-image: radial-gradient(ellipse 85% 85% at 50% 50%, black 35%, transparent 100%);
     }
 
     #proceso .eyebrow-tag { color: var(--grafito); }
@@ -719,13 +650,9 @@
       align-items: start;
       padding: 3.5rem 0;
       border-bottom: 1px solid var(--niebla);
-      position: relative;
-      transition: padding-left 0.4s ease;
     }
 
     .proc:first-child { border-top: 1px solid var(--niebla); }
-
-    .proc:hover { padding-left: 0.5rem; }
 
     .proc-num {
       font-family: 'Jost', sans-serif;
@@ -733,14 +660,6 @@
       font-size: clamp(3.5rem, 5.5vw, 5.5rem);
       color: var(--niebla);
       line-height: 1;
-      transition: all 0.4s ease;
-    }
-
-    .proc:hover .proc-num {
-      background: var(--cromo);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
     .proc-content { padding-top: 0.5rem; }
@@ -761,101 +680,273 @@
       max-width: 52ch;
     }
 
-    /* ── CTA ────────────────────────────────────────── */
-    #contacto {
-      background: var(--tinta);
-      padding: 13rem 4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+    /* ── SOBRE MÍ ───────────────────────────────────── */
+    #sobre-mi {
+      background: linear-gradient(135deg, #101014, #43434E);
+      padding: 10rem 4rem;
       position: relative;
       overflow: hidden;
     }
 
-    /* Línea vertical platino */
-    #contacto::before {
+    #sobre-mi::before {
       content: '';
       position: absolute;
-      top: 0; left: 50%;
-      transform: translateX(-50%);
+      top: 0; left: 4rem;
       width: 1px;
       height: 80px;
       background: linear-gradient(to bottom, var(--platino), transparent);
     }
 
-    /* Rings concéntricos */
-    .cta-rings {
+    #sobre-mi::after {
+      content: '04';
       position: absolute;
-      left: 50%; top: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px; height: 700px;
+      top: 50%;
+      right: -3rem;
+      transform: translateY(-50%);
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 42vw;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,215,221,0.05);
       pointer-events: none;
+      letter-spacing: -0.06em;
+      line-height: 1;
     }
 
-    .cta-ring {
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(214,215,221,0.045);
-      border-radius: 50%;
-      animation: ringPulse 7s ease-in-out infinite;
-    }
+    #sobre-mi .eyebrow-tag { color: var(--acero); }
 
-    .cta-ring:nth-child(2) { inset: 80px; animation-delay: -2.3s; }
-    .cta-ring:nth-child(3) { inset: 160px; animation-delay: -4.6s; }
-
-    @keyframes ringPulse {
-      0%, 100% { opacity: 0.25; transform: scale(0.97); }
-      50%       { opacity: 0.75; transform: scale(1.02); }
-    }
-
-    .cta-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.3em;
-      color: var(--acero);
-      margin-bottom: 2rem;
+    .sobre-body {
+      max-width: 62ch;
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
       position: relative;
+      z-index: 1;
+    }
+
+    .sobre-body .sobre-statement {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(1.6rem, 3vw, 2.6rem);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      background: var(--cromo);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(214,215,221,0.1);
+    }
+
+    .sobre-body p {
+      font-weight: 300;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--acero);
+    }
+
+    .sobre-body .sobre-cierre {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      line-height: 1.2;
+      background: var(--cromo);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(214,215,221,0.1);
+      margin-top: 0.4rem;
+    }
+
+    .sobre-tags {
+      display: flex;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 0.5rem 0 1rem;
+    }
+
+    .sobre-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      color: var(--grafito);
+      border: 1px solid rgba(214,215,221,0.1);
+      padding: 0.45rem 1.1rem;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .sobre-tag:hover { border-color: rgba(214,215,221,0.3); color: var(--acero); }
+
+    /* ── CTA ────────────────────────────────────────── */
+    #contacto {
+      background: linear-gradient(135deg, #101014, #43434E);
+      padding: 10rem 4rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      position: relative;
+    }
+
+    #contacto .eyebrow-tag { color: var(--acero); }
+
+    .cta-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .cta-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .cta-aside {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(4rem, 5.5vw, 6.5rem);
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(214,215,221,0.28);
+      text-align: center;
+      pointer-events: none;
     }
 
     .cta-title {
       font-family: 'Jost', sans-serif;
       font-weight: 200;
-      font-size: clamp(4rem, 10vw, 10rem);
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-      margin-bottom: 2.5rem;
-      background: var(--cromo);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      position: relative;
+      font-size: clamp(2.5rem, 4.5vw, 4.5rem);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 2rem;
+      color: var(--blanco);
     }
 
     .cta-sub {
       font-weight: 300;
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--acero);
-      max-width: 40ch;
-      line-height: 1.7;
+      max-width: 58ch;
+      line-height: 1.75;
       margin-bottom: 3.5rem;
-      position: relative;
     }
 
-    .cta-link {
+    .cta-card {
+      width: 100%;
+      max-width: 740px;
+      border: 1px solid rgba(214,215,221,0.15);
+      padding: 2.8rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .cta-card-info { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    .cta-card-title {
       font-family: 'Jost', sans-serif;
       font-weight: 300;
-      font-size: clamp(0.9rem, 1.6vw, 1.3rem);
-      color: var(--platino);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(214,215,221,0.3);
-      padding-bottom: 0.3rem;
-      letter-spacing: 0.02em;
-      transition: color 0.3s, border-color 0.3s;
-      position: relative;
+      font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+      color: var(--blanco);
+      line-height: 1.2;
     }
 
-    .cta-link:hover { color: var(--blanco); border-color: var(--platino); }
+    .cta-card-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      color: var(--acero);
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      color: var(--tinta);
+      background: var(--platino);
+      padding: 1.15rem 2.8rem;
+      text-decoration: none;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.3s, gap 0.3s;
+    }
+
+    .cta-btn::after {
+      content: '→';
+      font-size: 0.9rem;
+      transition: transform 0.3s;
+    }
+
+    .cta-btn:hover { background: var(--blanco); gap: 1.3rem; }
+    .cta-btn:hover::after { transform: translateX(4px); }
+
+    .cta-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .cta-bullets li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 300;
+      font-size: 0.95rem;
+      color: var(--acero);
+    }
+
+    .cta-bullets li::before {
+      content: '✓';
+      color: var(--acero);
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .cta-email {
+      position: absolute;
+      bottom: 3.5rem;
+      right: 4rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.15em;
+      color: var(--grafito);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .cta-email:hover { color: var(--acero); }
+
+    /* ── BRAND STRIP ─────────────────────────────────── */
+    .brand-strip {
+      background: var(--papel);
+      padding: 6rem 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-top: 1px solid var(--niebla);
+    }
+
+    .brand-strip-line {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: clamp(1.6rem, 3.5vw, 3rem);
+      color: var(--tinta);
+      text-align: center;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      max-width: 24ch;
+    }
 
     /* ── DEMOS (oculta) ─────────────────────────────── */
     #demos {
@@ -949,8 +1040,8 @@
 
     /* ── FOOTER ─────────────────────────────────────── */
     footer {
-      background: var(--tinta);
-      border-top: 1px solid rgba(214,215,221,0.1);
+      background: linear-gradient(135deg, #101014, #43434E);
+      border-top: 1px solid rgba(214,215,221,0.08);
       padding: 2.5rem 4rem;
       display: flex;
       align-items: center;
@@ -974,6 +1065,18 @@
       color: var(--grafito);
     }
 
+    .footer-cta {
+      font-family: 'Jost', sans-serif;
+      font-weight: 200;
+      font-size: 1.1rem;
+      letter-spacing: 0.02em;
+      color: var(--platino);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-cta:hover { color: var(--blanco); }
+
     /* ── REVEAL ─────────────────────────────────────── */
     .rv { opacity: 0; transform: translateY(36px); }
 
@@ -986,21 +1089,21 @@
       .hero-scroll { right: 1.5rem; bottom: 2rem; }
       .hero-tech-panel { display: none; }
 
-      #nosotros, #servicios, #proceso { padding: 6rem 1.5rem; }
-      #contacto { padding: 8rem 1.5rem; }
-      #demos { padding: 6rem 1.5rem; }
+      #nosotros, #servicios, #proceso, #sobre-mi { padding: 6rem 1.5rem; }
+      #contacto { padding: 7rem 1.5rem; grid-template-columns: 1fr; gap: 0; }
+      .cta-right { display: none; }
+      .cta-card { flex-direction: column; align-items: flex-start; }
+      .cta-email { position: static; margin-top: 3rem; }
 
       .about-cols { grid-template-columns: 1fr; gap: 1.5rem; }
       .about-stats { flex-direction: column; gap: 2.5rem; }
 
-      .services-grid { grid-template-columns: 1fr; perspective: none; }
-      .svc { padding: 2.5rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+      .svc { padding: 1.8rem 1.2rem; min-height: 120px; }
 
       .proc { grid-template-columns: 60px 1fr; gap: 1.5rem; }
 
       footer { flex-direction: column; gap: 1rem; padding: 2rem 1.5rem; text-align: center; }
-
-      .cta-rings { width: 320px; height: 320px; }
     }
   </style>
 </head>
@@ -1021,7 +1124,7 @@
     </defs>
   </svg>
 
-  <!-- ════════════════ START SCREEN ═══════════════════ -->
+  <!-- ════════════════════ START SCREEN ════════════════ -->
   <div id="start-screen">
     <svg viewBox="0 0 230.25 232.25" fill-rule="evenodd" aria-hidden="true">
       <defs>
@@ -1041,7 +1144,7 @@
     </div>
   </div>
 
-  <!-- ════════════════════ LOADER ════════════════════ -->
+  <!-- ════════════════════ LOADER (vídeo) ═════════════ -->
   <div id="loader">
     <video id="loader-video" playsinline muted>
       <source src="https://olaizmza.github.io/olaiz---assets/logo-intro.mp4" type="video/mp4">
@@ -1061,6 +1164,7 @@
       <li class="nav-home-item"><a href="#" id="nav-home-link">Home</a></li>
       <li><a href="#servicios">Servicios</a></li>
       <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
       <li><a href="#contacto">Contacto</a></li>
     </ul>
   </nav>
@@ -1128,7 +1232,7 @@
 
     <div class="about-stats">
       <div class="stat rv">
-        <span class="stat-val" data-target="14">14</span>
+        <span class="stat-val" data-target="30">30</span>
         <span class="stat-desc">DÍAS HASTA LOS PRIMEROS RESULTADOS</span>
       </div>
       <div class="stat rv">
@@ -1144,43 +1248,53 @@
 
   <!-- ════════════════════ SERVICES ═══════════════════ -->
   <section id="servicios">
+    <canvas class="constellation-canvas" width="340" height="340"></canvas>
     <div class="section-eyebrow rv">
       <span class="eyebrow-num">02</span>
       <span class="eyebrow-line"></span>
       <span class="eyebrow-tag">SERVICIOS</span>
     </div>
 
+    <p class="services-intro rv">Algunos ejemplos de lo que podemos implementar.</p>
+
     <div class="services-grid">
       <div class="svc rv">
-        <div class="svc-shimmer"></div>
         <span class="svc-num">01</span>
-        <h3 class="svc-title">Automatización<br>de Procesos</h3>
-        <p class="svc-body">Identificamos las tareas repetitivas que consumen el tiempo de tu equipo y las automatizamos con tecnología. Menos errores, menos costes, más capacidad para lo que realmente te importa.</p>
-        <span class="svc-cta">EXPLORAR</span>
+        <h3 class="svc-title">Captación<br>de leads</h3>
       </div>
 
       <div class="svc rv">
-        <div class="svc-shimmer"></div>
         <span class="svc-num">02</span>
         <h3 class="svc-title">Agentes IA</h3>
-        <p class="svc-body">Asistentes inteligentes que trabajan por ti o por tu negocio: atienden clientes, gestionan tareas y responden con tu voz y tus datos. Disponibles las 24 horas, sin días libres.</p>
-        <span class="svc-cta">EXPLORAR</span>
       </div>
 
       <div class="svc rv">
-        <div class="svc-shimmer"></div>
         <span class="svc-num">03</span>
-        <h3 class="svc-title">Estrategia IA</h3>
-        <p class="svc-body">Hacemos un diagnóstico sobre tu situación actual y diseñamos la hoja de ruta específica para tu empresa. Priorizamos resultados reales por encima de la tecnología.</p>
-        <span class="svc-cta">EXPLORAR</span>
+        <h3 class="svc-title">Automatización<br>de procesos</h3>
       </div>
 
       <div class="svc rv">
-        <div class="svc-shimmer"></div>
         <span class="svc-num">04</span>
-        <h3 class="svc-title">Formación<br>& Adopción</h3>
-        <p class="svc-body">Formamos a tu equipo para que la tenología y la IA sean parte natural de su día a día. La mejor tecnología no sirve de nada si el equipo no la adopta y la hace suya.</p>
-        <span class="svc-cta">EXPLORAR</span>
+        <h3 class="svc-title">CRM<br>a medida</h3>
+      </div>
+
+      <div class="svc rv">
+        <span class="svc-num">05</span>
+        <h3 class="svc-title">Chatbots<br>web</h3>
+      </div>
+
+      <div class="svc rv">
+        <span class="svc-num">06</span>
+        <h3 class="svc-title">Gestión de<br>inventarios</h3>
+      </div>
+
+      <div class="svc rv">
+        <span class="svc-num">07</span>
+        <h3 class="svc-title">Sistemas<br>de reservas</h3>
+      </div>
+
+      <div class="svc svc--more rv">
+        <h3 class="svc-title">Y más<br>según tu negocio</h3>
       </div>
     </div>
   </section>
@@ -1201,6 +1315,7 @@
           <p class="proc-body">Analizamos tu negocio a fondo: procesos actuales, cuellos de botella y oportunidades de mayor impacto. Sin compromisos, sin jerga técnica innecesaria.</p>
         </div>
       </div>
+
       <div class="proc rv">
         <span class="proc-num">02</span>
         <div class="proc-content">
@@ -1208,6 +1323,7 @@
           <p class="proc-body">Diseñamos la solución exacta para tu caso. Nada genérico: arquitectura, herramientas y flujos pensados específicamente para tu empresa y tu equipo.</p>
         </div>
       </div>
+
       <div class="proc rv">
         <span class="proc-num">03</span>
         <div class="proc-content">
@@ -1215,6 +1331,7 @@
           <p class="proc-body">Desplegamos las soluciones con mínima fricción. Sin migraciones complejas, sin interrumpir tu operación. Tu equipo lo adopta de forma natural.</p>
         </div>
       </div>
+
       <div class="proc rv">
         <span class="proc-num">04</span>
         <div class="proc-content">
@@ -1233,25 +1350,76 @@
       <span class="eyebrow-tag">DEMOS</span>
     </div>
     <p class="demos-intro rv">Proyectos reales, casos de uso y demostraciones en inteligencia artificial.</p>
-    <div class="demos-grid">
-      <!-- demo cards aquí cuando haya contenido -->
+    <div class="demos-grid"></div>
+  </section>
+
+  <!-- ════════════════════ SOBRE MÍ ═══════════════════ -->
+  <section id="sobre-mi">
+    <canvas class="constellation-canvas" width="340" height="340"></canvas>
+    <div class="section-eyebrow rv">
+      <span class="eyebrow-num">04</span>
+      <span class="eyebrow-line"></span>
+      <span class="eyebrow-tag">SOBRE MÍ</span>
+    </div>
+
+    <div class="sobre-body">
+      <p class="sobre-statement rv">La IA no es solo el futuro.<br>También el presente.</p>
+
+      <div class="sobre-tags rv">
+        <span class="sobre-tag">INTELIGENCIA ARTIFICIAL</span>
+        <span class="sobre-tag">AUTOMATIZACIÓN</span>
+        <span class="sobre-tag">AGENTES IA</span>
+        <span class="sobre-tag">MADRID</span>
+        <span class="sobre-tag">EST. MMXXVI</span>
+      </div>
+
+      <p class="rv">Soy Olaiz, fundadora de Olaiz Studio. Me formé en IA con una cosa muy clara: que la tecnología, bien aplicada, no reemplaza a las personas — las libera. Y eso es exactamente lo que construyo para cada empresa con la que trabajo.</p>
+      <p class="rv">Lo mismo que quiero para mí lo quiero para ti: ganar tiempo. Para pensar mejor, atender mejor, crear más y tomar mejores decisiones sin que cada avance cueste más horas.</p>
+      <p class="rv">Porque la tecnología, bien utilizada, no debería alejarnos de lo humano. Debería devolvérnoslo.</p>
+
+      <p class="rv sobre-cierre">Y desde ahí nace Olaiz Studio.</p>
     </div>
   </section>
 
   <!-- ════════════════════ CTA ════════════════════════ -->
   <section id="contacto">
-    <div class="cta-rings">
-      <div class="cta-ring"></div>
-      <div class="cta-ring"></div>
-      <div class="cta-ring"></div>
+    <canvas class="constellation-canvas" width="340" height="340"></canvas>
+    <div class="cta-left">
+      <div class="section-eyebrow rv">
+        <span class="eyebrow-num">05</span>
+        <span class="eyebrow-line"></span>
+        <span class="eyebrow-tag">SIGUIENTE PASO</span>
+      </div>
+
+      <h2 class="cta-title rv">Siguiente paso.</h2>
+      <p class="cta-sub rv">Si has llegado hasta aquí, hay algo en tu negocio que está pidiendo orden. Te propongo el primer paso: una llamada de 15 minutos, sin compromiso y sin coste.</p>
+
+      <div class="cta-card rv">
+        <div class="cta-card-info">
+          <span class="cta-card-title">Llamada de 15 minutos</span>
+          <span class="cta-card-sub">VEMOS JUNTOS SI ENCAJAMOS</span>
+        </div>
+        <a href="mailto:omf@olaizstudio.com" class="cta-btn">CONTACTAR</a>
+      </div>
+
+      <ul class="cta-bullets rv">
+        <li>Resultados desde los primeros 14 días</li>
+        <li>Acompañamiento durante todo el proceso</li>
+        <li>Sin compromiso</li>
+      </ul>
     </div>
-    <p class="cta-tag rv">SIGUIENTE PASO</p>
-    <h2 class="cta-title rv">¿Hablamos?</h2>
-    <p class="cta-sub rv">Cuéntanos tu reto. Analizamos tu caso sin compromiso y te decimos qué podemos hacer.</p>
-    <a href="mailto:omf@olaizstudio.com" class="cta-link rv">
-      omf@olaizstudio.com
-    </a>
+
+    <div class="cta-right rv">
+      <span class="cta-aside">Tu tiempo también es parte del negocio</span>
+    </div>
+
+    <a href="mailto:omf@olaizstudio.com" class="cta-email">omf@olaizstudio.com</a>
   </section>
+
+  <!-- ════════════════ FRANJA DE MARCA ════════════════ -->
+  <div class="brand-strip">
+    <p class="brand-strip-line rv">Precisión técnica.<br>Impacto real.</p>
+  </div>
 
   <!-- ════════════════════ FOOTER ═════════════════════ -->
   <footer>
@@ -1261,14 +1429,15 @@
       </svg>
       <span class="footer-name">OLAIZ STUDIO</span>
     </div>
-    <span class="footer-copy">© MMXXVI · OLAIZ STUDIO · OMF · PLATINO · V3.0</span>
+    <span class="footer-copy">© MMXXVI · OLAIZ STUDIO · OMF · PLATINO</span>
+    <a href="mailto:omf@olaizstudio.com" class="footer-cta">¿Hablamos?</a>
   </footer>
 
   <!-- ════════════════════ SCRIPTS ════════════════════ -->
   <script>
     gsap.registerPlugin(ScrollTrigger);
 
-    /* ══ CURSOR GLOW ════════════════════════════════ */
+    /* ── CURSOR GLOW ──────────────────────────────── */
     const glow = document.getElementById('cursor-glow');
     let mx = window.innerWidth / 2, my = window.innerHeight / 2;
 
@@ -1282,7 +1451,7 @@
       requestAnimationFrame(moveCursor);
     })();
 
-    /* ══ HERO CANVAS PARTICLES ══════════════════════ */
+    /* ── HERO CANVAS PARTICLES ────────────────────── */
     function initParticles() {
       const canvas = document.getElementById('hero-canvas');
       const ctx    = canvas.getContext('2d');
@@ -1344,52 +1513,82 @@
       draw();
     }
 
-    /* ══ REVEAL HERO (tras vídeo) ══════════════════════ */
+    /* ── CONSTELLATION (secciones) ────────────────── */
+    function createConstellation(canvas) {
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width, H = canvas.height;
+      const DOTS = 38, MAX_DIST = 115;
+      const pts = Array.from({ length: DOTS }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.2 + 0.4
+      }));
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (let i = 0; i < pts.length; i++) {
+          const p = pts[i];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > W) p.vx *= -1;
+          if (p.y < 0 || p.y > H) p.vy *= -1;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(214,215,221,0.55)';
+          ctx.fill();
+          for (let j = i + 1; j < pts.length; j++) {
+            const q = pts[j];
+            const dx = p.x - q.x, dy = p.y - q.y;
+            const d = Math.sqrt(dx * dx + dy * dy);
+            if (d < MAX_DIST) {
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(214,215,221,${0.13 * (1 - d / MAX_DIST)})`;
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+
+    /* ── REVEAL HERO (tras vídeo) ───────────────────── */
     function revealHero() {
-      /*
-        El vídeo termina con un zoom máximo hacia el logo.
-        Continuamos esa sensación: el título emerge ligeramente
-        escalado y baja a tamaño real (zoom-out sutil).
-        El loader se disuelve en paralelo durante 1.6 s para
-        que no haya corte visible.
-      */
       gsap.set('.hero-line-inner', { opacity: 0, y: 0, scale: 1.06 });
       gsap.set('.hero-sub',        { opacity: 0, y: 0 });
 
       const tl = gsap.timeline({ delay: 0.25 });
 
-      /* línea platino aparece primero, muy suave */
       tl.to('.hero-platinum-line', {
         scaleX: 1, opacity: 1, duration: 0.9, ease: 'power2.out'
       });
 
-      /* label */
       tl.to('.hero-label', {
         opacity: 1, duration: 0.6, ease: 'power2.out',
         onComplete: () => document.querySelector('.hero-label').classList.add('is-typed')
       }, '-=0.5');
 
-      /* título: zoom-out + fade — continúa el movimiento del vídeo */
       tl.to('.hero-line-inner', {
         opacity: 1, scale: 1,
         duration: 1.1, stagger: 0.1, ease: 'power3.out'
       }, '-=0.3');
 
-      /* sub y scroll */
       tl.to(['.hero-sub', '.hero-scroll'], {
         opacity: 1, y: 0,
         duration: 0.8, stagger: 0.15, ease: 'power2.out'
       }, '-=0.5');
 
-      /* nav y panel tech — aparecen al fondo sin llamar la atención */
       gsap.to('#nav',             { opacity: 1, duration: 1, delay: 0.6, ease: 'power2.out' });
       gsap.to('.hero-tech-panel', { opacity: 1, duration: 1, delay: 1,   ease: 'power2.out' });
     }
 
-    /* ══ VIDEO LOADER ═══════════════════════════════ */
-    const loaderVideo  = document.getElementById('loader-video');
-    const loaderEl     = document.getElementById('loader');
-    const startScreen  = document.getElementById('start-screen');
+    /* ── VIDEO LOADER ─────────────────────────────── */
+    const loaderVideo = document.getElementById('loader-video');
+    const loaderEl    = document.getElementById('loader');
+    const startScreen = document.getElementById('start-screen');
 
     function startVideo() {
       gsap.to('#start-screen', {
@@ -1402,7 +1601,6 @@
 
     startScreen.addEventListener('click', startVideo);
 
-    /* Cubre el último frame antes de que el vídeo acabe */
     let overlayStarted = false;
     loaderVideo.addEventListener('timeupdate', () => {
       if (!loaderVideo.duration || overlayStarted) return;
@@ -1419,7 +1617,6 @@
 
     loaderVideo.addEventListener('ended', () => {
       overlayStarted = false;
-      /* El overlay ya tapa el vídeo — disolvemos todo el loader */
       gsap.to('#loader', {
         opacity: 0,
         duration: 0.8,
@@ -1433,7 +1630,7 @@
       revealHero();
     });
 
-    /* ══ REPLAY HOME ════════════════════════════════ */
+    /* ── REPLAY HOME ──────────────────────────────── */
     function replayIntro() {
       lenis.scrollTo(0, { immediate: true });
 
@@ -1461,37 +1658,25 @@
       loaderVideo.play();
     }
 
-    document.fonts.ready.then(initParticles);
+    document.fonts.ready.then(() => {
+      initParticles();
+      document.querySelectorAll('.constellation-canvas').forEach(createConstellation);
+    });
 
-    /* ══ LENIS ══════════════════════════════════════ */
+    /* ── LENIS ────────────────────────────────────── */
     const lenis = new Lenis({ lerp: 0.075 });
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add(t => lenis.raf(t * 1000));
     gsap.ticker.lagSmoothing(0);
 
-    /* ══ NAV SCROLL ═════════════════════════════════ */
+    /* ── NAV SCROLL ───────────────────────────────── */
     ScrollTrigger.create({
       start: 'top -100px',
       onEnter:     () => document.getElementById('nav').classList.add('is-scrolled'),
       onLeaveBack: () => document.getElementById('nav').classList.remove('is-scrolled'),
     });
 
-    /* ══ 3D CARD TILT ═══════════════════════════════ */
-    document.querySelectorAll('.svc').forEach(card => {
-      card.addEventListener('mousemove', e => {
-        const r  = card.getBoundingClientRect();
-        const rx = ((e.clientY - r.top  - r.height / 2) / (r.height / 2)) * -5;
-        const ry = ((e.clientX - r.left - r.width  / 2) / (r.width  / 2)) *  5;
-        gsap.to(card, { rotateX: rx, rotateY: ry, translateZ: 16,
-          duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
-      });
-      card.addEventListener('mouseleave', () => {
-        gsap.to(card, { rotateX: 0, rotateY: 0, translateZ: 0,
-          duration: 0.8, ease: 'elastic.out(1, 0.4)', overwrite: 'auto' });
-      });
-    });
-
-    /* ══ STAT COUNTERS ══════════════════════════════ */
+    /* ── STAT COUNTERS ────────────────────────────── */
     document.querySelectorAll('.stat-val[data-target]').forEach(el => {
       const target = parseInt(el.dataset.target);
       const suffix = el.dataset.suffix || '';
@@ -1505,7 +1690,7 @@
       });
     });
 
-    /* ══ REVEAL ═════════════════════════════════════ */
+    /* ── REVEAL ───────────────────────────────────── */
     gsap.utils.toArray('.rv').forEach(el => {
       gsap.fromTo(el,
         { opacity: 0, y: 36 },
@@ -1521,7 +1706,7 @@
       );
     });
 
-    /* ══ ANCHORS ════════════════════════════════════ */
+    /* ── ANCHORS ──────────────────────────────────── */
     document.getElementById('nav-home-link').addEventListener('click', e => {
       e.preventDefault();
       replayIntro();
